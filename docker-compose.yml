@@ -1,0 +1,13 @@
+version: '3.5'
+
+services:
+  flask:
+    image: translapse-image
+    container_name: translapse
+    restart: unless-stopped
+    environment:
+      SCRIPT_NAME: ${APP_ROOT}
+    build: 
+      context: .
+    ports:
+      - ${CONTAINER_PORT}:5000

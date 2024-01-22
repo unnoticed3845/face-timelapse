@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Translapse{% endblock %}
+{% block head %}{% endblock %}
+
+{% block main %}
+{% if first_time %}
+<h4>Here is your temporary personal link for this page:</h4>
+<a href="{{ url_for(request.endpoint, token=token) }}">
+    {{ url_for(request.endpoint, token=token, _external=True) }}
+</a>
+<p>Dont loose it and dont share it! Your rendered video will be available here.</p>
+{% endif %}
+
+<h4>Render status:</h2>
+<p style="color:{{ 'green' if status == 'Done' else 'black' }};">{{ status }}</p>
+
+{% if status == "Done" %}
+<a href="{{ url_for('download', token=token) }}" download>Download</a>
+{% endif %}
+{% endblock %}
